@@ -10,6 +10,10 @@
       "packages/*"
     ]
   },
+  "scripts": {
+    "compose:up:dev": "(cd packages && docker-compose -f docker-compose.yml up -d --build && docker-compose logs -f -t)",
+    "compose:down:dev": "(cd packages && docker-compose -f docker-compose.yml down --remove-orphans)"
+  },
   "license": "MIT",
   "devDependencies": {
     "typescript": "^4.8.4",

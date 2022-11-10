@@ -4,6 +4,7 @@ const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
+
 module.exports = {
   mode: isDevelopment ? 'development' : 'production',
   resolve: {
@@ -25,7 +26,12 @@ module.exports = {
     static: './',
     historyApiFallback: true,
     hot: true,
-    port: 4000
+    port: 4000,
+    client: {
+      webSocketURL: {
+        port: 443
+      }
+    }
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
