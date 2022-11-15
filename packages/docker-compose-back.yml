@@ -1,21 +1,5 @@
 version: '3.9'
 services:
-  web:
-    build: ./web
-    ports:
-      - 4000:4000
-    working_dir: /app-web
-    depends_on:
-      server:
-        condition: service_healthy
-    # Os `healthcheck` devem garantir que a aplicação
-    # está operacional, antes de liberar o container
-    volumes: 
-      - ./web/src:/app-web/src
-    healthcheck:
-      test: ["CMD", "lsof", "-t", "-i:4000"]  # Caso utilize outra porta interna para o front, altere ela aqui também
-      timeout: 10s
-      retries: 5
   server:
     container_name: app_server
     working_dir: /packages-server
