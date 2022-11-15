@@ -1,6 +1,6 @@
 import express from 'express'
 import 'express-async-errors';
-import routes from './routes';
+import routes from './app/routes';
 
 class App {
   public app: express.Express;
