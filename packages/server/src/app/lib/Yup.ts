@@ -1,7 +1,10 @@
 /* eslint-disable no-template-curly-in-string */
 /* eslint-disable no-unused-vars */
 import * as Yup from 'yup';
+import cepIsValid from './validators/cepIsValid';
 import cpfIsValid from './validators/cpfIsValid';
+import phoneIsValid from './validators/phoneIsValid';
+import rgIsValid from './validators/rgIsValid';
 import whitespaceValid from './validators/whitespaceValid';
 
 Yup.setLocale({
@@ -49,13 +52,46 @@ Yup.addMethod<Yup.StringSchema>(Yup.string, 'cpf', function () {
   );
 });
 
+Yup.addMethod<Yup.StringSchema>(Yup.string, 'rg', function () {
+  return this.test(
+    'rgIsValid',
+    `RG informado inválido.`,
+    (rg: string | undefined) => {
+      if (!rg) return true;
+      return rgIsValid(rg);
+    }
+  );
+});
+
+Yup.addMethod<Yup.StringSchema>(Yup.string, 'cep', function () {
+  return this.test(
+    'cepIsValid',
+    `cep informado inválido.`,
+    (cep: string | undefined) => {
+      if (!cep) return true;
+      return cepIsValid(cep);
+    }
+  );
+});
+
+Yup.addMethod<Yup.StringSchema>(Yup.string, 'phone', function () {
+  return this.test(
+    'phoneIsValid',
+    `telefone informado inválido.`,
+    (phone: string | undefined) => {
+      if (!phone) return true;
+      return phoneIsValid(phone);
+    }
+  );
+});
+
 declare module 'yup' {
   interface StringSchema {
     whitespaceValid(field: string): StringSchema;
     cpf(): StringSchema;
-    cnpj(): StringSchema;
-    cnpjCpf(): StringSchema;
-    plate(): StringSchema;
+    rg(): StringSchema;
+    phone(): StringSchema;
+    cep(): StringSchema;
   }
 }
 

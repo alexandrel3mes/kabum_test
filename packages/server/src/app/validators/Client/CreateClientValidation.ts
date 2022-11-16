@@ -11,13 +11,13 @@ export default async (req: Request, res: Response, next: NextFunction) => {
   try {
     const schema = Yup.object().shape({
       name: Yup.string().min(3).max(250).whitespaceValid('Nome').required(),
-      cpf: Yup.string().required(),
-      rg: Yup.string().required(),
-      phone: Yup.string().min(11).required(),
+      cpf: Yup.string().cpf().required(),
+      rg: Yup.string().rg().required(),
+      phone: Yup.string().phone().required(),
       birthday: Yup.date().transform(dateFunctions.parseDateString).max(today),
       addresses: Yup.array().of(
         Yup.object().shape({
-          zipcode: Yup.string().required(),
+          zipcode: Yup.string().cep().required(),
           address: Yup.string().required(),
           number: Yup.string().required(),
           complement: Yup.string().nullable(),
