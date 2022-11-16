@@ -1,19 +1,19 @@
 import { Request, Response } from "express";
-import { FindClientUseCase } from "./FindClientUseCase";
+import { FindAddressUseCase } from "./FindAddressUseCase";
 
 export class FindAddressController {
-  constructor(private findClientUseCase: FindClientUseCase) {}
+  constructor(private findAddressUseCase: FindAddressUseCase) {}
   async handle(request: Request, response: Response): Promise<Response> {
     const { id } = request.params
     if (id) {
-      const client = await this.findClientUseCase.findById(id)
-      return response.status(201).json(client)
+      const address = await this.findAddressUseCase.findById(id)
+      return response.status(201).json(address)
     }
 
-    const clients = await this.findClientUseCase.findAll()
+    const addresses = await this.findAddressUseCase.findAll()
 
 
-    return response.status(201).json(clients)
+    return response.status(201).json(addresses)
 
   }
 }

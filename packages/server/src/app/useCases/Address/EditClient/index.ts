@@ -1,10 +1,10 @@
-import { TypeOrmClientRepository } from "../../../repositories/implementations/TypeOrmClientRepository";
-import { EditClientController } from "./EditClientController";
-import { EditClientUseCase } from "./EditClientUseCase";
+import { TypeOrmAddressRepository } from "../../../repositories/implementations/TypeOrmAddressRepository"
+import { EditAddressController } from "./EditAddressController"
+import { EditAddressUseCase } from "./EditAddressUseCase"
 
-const typeOrmClientRepository = new TypeOrmClientRepository()
+const typeOrmAddressRepository = new TypeOrmAddressRepository()
 
-const editClientUseCase = new EditClientUseCase(typeOrmClientRepository)
-const editClientController = new EditClientController(editClientUseCase)
+const editAddressUseCase = new EditAddressUseCase(typeOrmAddressRepository)
+const editAddressController = new EditAddressController(editAddressUseCase)
 
-export { editClientUseCase, editClientController }
+export { editAddressUseCase, editAddressController }

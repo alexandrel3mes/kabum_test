@@ -1,10 +1,10 @@
-import { TypeOrmClientRepository } from "../../../repositories/implementations/TypeOrmClientRepository";
-import { RemoveClientController } from "./RemoveClientController";
-import { RemoveClientUseCase } from "./RemoveClientUseCase";
+import { TypeOrmAddressRepository } from "../../../repositories/implementations/TypeOrmAddressRepository";
+import { RemoveAddressController } from "./RemoveAddressController";
+import { RemoveAddressUseCase } from "./RemoveAddressUseCase";
 
-const typeOrmClientRepository = new TypeOrmClientRepository()
+const typeOrmAddressRepository = new TypeOrmAddressRepository()
 
-const removeClientUseCase = new RemoveClientUseCase(typeOrmClientRepository)
-const removeClientController = new RemoveClientController(removeClientUseCase)
+const removeAddressUseCase = new RemoveAddressUseCase(typeOrmAddressRepository)
+const removeAddressController = new RemoveAddressController(removeAddressUseCase)
 
-export { removeClientUseCase, removeClientController }
+export { removeAddressUseCase, removeAddressController }

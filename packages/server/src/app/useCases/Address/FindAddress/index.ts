@@ -1,10 +1,10 @@
-import { TypeOrmClientRepository } from "../../../repositories/implementations/TypeOrmClientRepository"
-import { FindClientController } from "./FindClientController"
-import { FindClientUseCase } from "./FindClientUseCase"
+import { TypeOrmAddressRepository } from "../../../repositories/implementations/TypeOrmAddressRepository"
+import { FindAddressController } from "./FindAddressController"
+import { FindAddressUseCase } from "./FindAddressUseCase"
 
-const typeOrmClientRepository = new TypeOrmClientRepository()
+const typeOrmAddressRepository = new TypeOrmAddressRepository()
 
-const findClientUseCase = new FindClientUseCase(typeOrmClientRepository)
-const findClientController = new FindClientController(findClientUseCase)
+const findAddressUseCase = new FindAddressUseCase(typeOrmAddressRepository)
+const findAddressController = new FindAddressController(findAddressUseCase)
 
-export { findClientUseCase, findClientController }
+export { findAddressUseCase, findAddressController }
