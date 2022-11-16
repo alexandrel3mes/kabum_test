@@ -1,6 +1,6 @@
 import dataSource from "../../../database";
 import { EntityManager } from "typeorm";
-import throwCustomError from "../../../utils/throwCustomError";
+import throwCustomError from "../../error/throwCustomError";
 import errorMessages from "../../error/errorMessages";
 import { IUserRepository } from "../IUserRepository";
 import UserModel from "../../models/User.entity";

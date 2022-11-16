@@ -2,7 +2,7 @@ import 'dotenv';
 import { Request, Response, NextFunction } from 'express';
 import authConfig from '../config/auth';
 import jwt from 'jsonwebtoken';
-import throwCustomError from '../../utils/throwCustomError';
+import throwCustomError from '../error/throwCustomError';
 
 const secret = 'seusecretdetoken';
 

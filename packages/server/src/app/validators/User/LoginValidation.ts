@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import errorMessages from '../../error/errorMessages';
-import throwCustomError from '../../../utils/throwCustomError';
+import throwCustomError from '../../error/throwCustomError';
 import { ValidationError } from 'yup';
 import Yup from '../../lib/Yup';
 

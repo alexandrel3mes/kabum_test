@@ -5,7 +5,7 @@ import { Client } from "../../entities/Client";
 import { Address } from "../../entities/Address";
 import ClientModel from "../../models/Client.entity";
 import AddressModel from "../../models/Address.entity";
-import throwCustomError from "../../../utils/throwCustomError";
+import throwCustomError from "../../error/throwCustomError";
 import errorMessages from "../../error/errorMessages";
 import { IEditClientRequestDTO } from "../../useCases/Client/EditClient/EditClientDTO";
 

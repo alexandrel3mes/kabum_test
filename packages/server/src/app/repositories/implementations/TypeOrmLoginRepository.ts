@@ -1,4 +1,4 @@
-import throwCustomError from "../../../utils/throwCustomError";
+import throwCustomError from "../../error/throwCustomError";
 import { User } from "../../entities/User";
 import dataSource from "../../../database";
 import bcrypt = require('bcryptjs');
