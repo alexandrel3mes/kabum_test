@@ -12,10 +12,9 @@ export default class createClient1663799908373 implements MigrationInterface {
         columns: [
           {
             name: 'id',
-            type: 'int',
-            isGenerated: true,
-            generationStrategy: 'increment',
+            type: 'varchar',
             isPrimary: true,
+            generationStrategy: 'uuid',
           },
           {
             name: 'name',

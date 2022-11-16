@@ -41,4 +41,4 @@ const dataSource = async () => {
   return new DataSource(options);
 }
 
-export default dataSource;
+export default dataSource();

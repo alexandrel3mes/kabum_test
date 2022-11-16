@@ -13,14 +13,13 @@ export default class createAddress1663799908374 implements MigrationInterface {
         columns: [
           {
             name: 'id',
-            type: 'int',
-            isGenerated: true,
-            generationStrategy: 'increment',
+            type: 'varchar',
             isPrimary: true,
+            generationStrategy: 'uuid',
           },
           {
             name: 'client_id',
-            type: 'int',
+            type: 'varchar',
             isNullable: false,
           },
           {

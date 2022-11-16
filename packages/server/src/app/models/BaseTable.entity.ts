@@ -3,11 +3,12 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   BaseEntity,
+  BeforeInsert,
 } from 'typeorm';
 
 export default abstract class BaseTable extends BaseEntity {
-  @PrimaryGeneratedColumn({ name: 'id' })
-  id: number;
+  @PrimaryGeneratedColumn("uuid")
+  id: string;
 
   @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
   createdAt: Date | string;

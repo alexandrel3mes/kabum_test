@@ -2,7 +2,7 @@ import { uuid } from 'uuidv4'
 import { Client } from './Client';
 
 export class Address {
-  public readonly id: string;
+  public readonly id?: string;
 
   public zipcode: string;
   public address: string;
@@ -14,8 +14,9 @@ export class Address {
   public state: string;
   public client: Client;
 
-  constructor(props: Omit<Address, 'id'>, id?: string) {
+  constructor(props: Omit<Address, 'id'>, client: Client, id?: string) {
     Object.assign(this, props)
+    this.client = client
 
     if (!id) {
       this.id = uuid();

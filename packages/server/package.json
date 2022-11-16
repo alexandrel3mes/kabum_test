@@ -5,7 +5,12 @@
   "license": "MIT",
   "scripts": {
     "dev": "ts-node-dev --poll --respawn --ignore-watch node_modules ./src/server.ts",
-    "dump": "ts-node-dev ./src/database/dump/dumpIndex.ts"
+    "dump": "ts-node-dev ./src/database/dump/dumpIndex.ts",
+    "typeorm": "ts-node-dev ./node_modules/typeorm/cli",
+    "migration:run": "yarn typeorm -d ./src/database/index.ts migration:run",
+    "migration:revert": "yarn typeorm -d ./src/database/index.ts migration:revert",
+    "drop": "yarn typeorm -d ./src/database/index.ts schema:drop",
+    "db:reset": "npm run drop && npm run migration:run && npm run dump"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

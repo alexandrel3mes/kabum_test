@@ -3,7 +3,7 @@ import BaseTable from './BaseTable.entity';
 import Client from './Client.entity';
 
 @Entity({ name: 'address' })
-export default class Address extends BaseTable {
+export default class AddressModel extends BaseTable {
   @Column({ nullable: false })
   zipcode: string;
 

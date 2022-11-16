@@ -2,11 +2,13 @@ import { uuid } from 'uuidv4'
 import { Address } from './Address';
 
 export class Client {
-  public readonly id: string;
+  public readonly id?: string;
 
   public name: string;
-  public email: string;
-  public password: string;
+  public cpf: string;
+  public birthday: string;
+  public rg: string;
+  public phone: string;
   public addresses: Address[];
 
   constructor(props: Omit<Client, 'id'>, id?: string) {

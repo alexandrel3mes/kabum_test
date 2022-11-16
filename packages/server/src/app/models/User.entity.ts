@@ -3,7 +3,7 @@ import bcrypt from 'bcryptjs';
 import BaseTable from './BaseTable.entity';
 
 @Entity({ name: 'user' })
-export default class User extends BaseTable {
+export default class UserModel extends BaseTable {
   @Column({ nullable: false })
   name: string;
 
