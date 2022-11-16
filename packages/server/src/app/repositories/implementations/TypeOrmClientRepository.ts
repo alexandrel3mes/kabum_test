@@ -9,6 +9,18 @@ import throwCustomError from "../../../utils/throwCustomError";
 import errorMessages from "../../error/errorMessages";
 
 export class TypeOrmClientRepository implements IClientRepository {
+  async findById(id: string): Promise<Client> {
+    const source = await dataSource
+
+    const client = await source.getRepository(ClientModel).findOne({
+      where: { id }
+    })
+
+    if (!client) return throwCustomError('notFoundError', errorMessages.NOT_FOUND_CLIENT);
+
+    return client
+  }
+
   async findByCpf(cpf: string): Promise<void> {
     const source = await dataSource
 
@@ -37,6 +49,14 @@ export class TypeOrmClientRepository implements IClientRepository {
     })
 
     if (client) return throwCustomError('validationError', errorMessages.CLIENT_ALREADY_EXIST);
+  }
+
+  async findAll(): Promise<Client[]> {
+    const source = await dataSource
+    const clients = await source.getRepository(ClientModel).find()
+
+    if (clients.length === 0) return throwCustomError('validationError', errorMessages.NO_CLIENTS);
+    return clients
   }
 
   async save(client: Client, addresses: Address[]): Promise<void> {
