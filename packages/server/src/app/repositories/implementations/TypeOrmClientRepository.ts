@@ -5,6 +5,8 @@ import { Client } from "../../entities/Client";
 import { Address } from "../../entities/Address";
 import ClientModel from "../../models/Client.entity";
 import AddressModel from "../../models/Address.entity";
+import throwCustomError from "../../../utils/throwCustomError";
+import errorMessages from "../../error/errorMessages";
 
 export class TypeOrmClientRepository implements IClientRepository {
   async findByCpf(cpf: string): Promise<void> {
@@ -14,7 +16,7 @@ export class TypeOrmClientRepository implements IClientRepository {
       where: { cpf }
     })
 
-    if (client) throw new Error('Cliente já cadastrado')
+    if (client) return throwCustomError('validationError', errorMessages.CLIENT_ALREADY_EXIST);
   }
 
   async findByRg(rg: string): Promise<void> {
@@ -24,7 +26,7 @@ export class TypeOrmClientRepository implements IClientRepository {
       where: { rg }
     })
 
-    if (client) throw new Error('Cliente já cadastrado')
+    if (client) return throwCustomError('validationError', errorMessages.CLIENT_ALREADY_EXIST);
   }
 
   async findByPhone(phone: string): Promise<void> {
@@ -34,7 +36,7 @@ export class TypeOrmClientRepository implements IClientRepository {
       where: { phone }
     })
 
-    if (client) throw new Error('Cliente já cadastrado')
+    if (client) return throwCustomError('validationError', errorMessages.CLIENT_ALREADY_EXIST);
   }
 
   async save(client: Client, addresses: Address[]): Promise<void> {
