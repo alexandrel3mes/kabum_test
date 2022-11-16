@@ -18,7 +18,13 @@
     "skipLibCheck": true,
     "paths": {
       "*": ["node_modules/*"]
-    }
+    },
+    "typeRoots": [
+      "./src/app/config/@types",
+      "./custom_typings",
+      "./@types",
+      "./node_modules/@types"
+    ]
   },
   "include": ["src/**/*.ts"],
   "exclude": ["src/tests"]
