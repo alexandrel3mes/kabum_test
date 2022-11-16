@@ -1,8 +1,7 @@
 import { Router } from 'express';
 import authorize from '../../middlewares/authorize';
-import EditClientValidation from '../../validators/Client/EditClientValidation';
 import { findAddressController } from '../../useCases/Address/FindAddress';
-import { editAddressController } from '../../useCases/Address/EditClient';
+import { editAddressController } from '../../useCases/Address/EditAddress';
 import { removeAddressController } from '../../useCases/Address/RemoveClient';
 import EditAddressValidation from '../../validators/Address/EditAddressValidation';
 
