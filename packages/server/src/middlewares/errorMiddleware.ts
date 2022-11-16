@@ -6,6 +6,7 @@ const errors: Record<string, number> = {
   notFoundError: 404,
   sequelizeUniqueConstraintError: 409,
   unprocessableEntity: 422,
+  unknownError: 500,
 };
 
 const errorMiddleware = (
