@@ -1,5 +1,4 @@
-import { Client } from "../../entities/Client";
-import { IClientRepository } from "../../repositories/IClientRepository";
+import { IClientRepository } from "../../../repositories/IClientRepository";
 import { IEditClientRequestDTO } from "./EditClientDTO";
 
 export class EditClientUseCase {

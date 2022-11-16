@@ -1,4 +1,4 @@
-import { IClientRepository } from "../../repositories/IClientRepository";
+import { IClientRepository } from "../../../repositories/IClientRepository";
 
 export class FindClientUseCase {
   constructor(private clientRepo: IClientRepository) {}

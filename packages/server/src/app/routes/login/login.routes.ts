@@ -1,6 +1,6 @@
 import { Router } from 'express';
+import { loginController } from '../../useCases/User/Login';
 import LoginValidation from '../../validators/User/LoginValidation';
-import { loginController } from '../../useCases/Login'
 
 const loginRouter = Router();
 

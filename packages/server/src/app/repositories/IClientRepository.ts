@@ -1,6 +1,6 @@
 import { Address } from "../entities/Address";
 import { Client } from "../entities/Client";
-import { IEditClientRequestDTO } from "../useCases/EditClient/EditClientDTO";
+import { IEditClientRequestDTO } from "../useCases/Client/EditClient/EditClientDTO";
 
 export interface IClientRepository {
   findByCpf(cpf: string): Promise<void>;

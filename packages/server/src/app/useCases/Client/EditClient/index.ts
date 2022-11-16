@@ -1,4 +1,4 @@
-import { TypeOrmClientRepository } from "../../repositories/implementations/TypeOrmClientRepository";
+import { TypeOrmClientRepository } from "../../../repositories/implementations/TypeOrmClientRepository";
 import { EditClientController } from "./EditClientController";
 import { EditClientUseCase } from "./EditClientUseCase";
 

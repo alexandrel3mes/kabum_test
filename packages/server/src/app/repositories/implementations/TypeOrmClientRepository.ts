@@ -7,7 +7,7 @@ import ClientModel from "../../models/Client.entity";
 import AddressModel from "../../models/Address.entity";
 import throwCustomError from "../../../utils/throwCustomError";
 import errorMessages from "../../error/errorMessages";
-import { IEditClientRequestDTO } from "../../useCases/EditClient/EditClientDTO";
+import { IEditClientRequestDTO } from "../../useCases/Client/EditClient/EditClientDTO";
 
 export class TypeOrmClientRepository implements IClientRepository {
   async remove(userId: string): Promise<void> {

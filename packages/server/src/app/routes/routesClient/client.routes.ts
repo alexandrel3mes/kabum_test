@@ -1,11 +1,7 @@
 import { Router } from 'express';
 import CreateClientValidation from '../../validators/Client/CreateClientValidation';
-import { createClientController } from '../../useCases/CreateClient'
 import authorize from '../../middlewares/authorize';
-import { findClientController } from '../../useCases/FindClient';
-import { editClientController } from '../../useCases/EditClient';
 import EditClientValidation from '../../validators/Client/EditClientValidation';
-import { removeClientController } from '../../useCases/RemoveClient';
 
 const clientRouter = Router();
 

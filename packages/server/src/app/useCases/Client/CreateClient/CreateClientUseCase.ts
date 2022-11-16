@@ -1,6 +1,6 @@
-import { Address } from "../../entities/Address";
-import { Client } from "../../entities/Client";
-import { IClientRepository } from "../../repositories/IClientRepository";
+import { Address } from "../../../entities/Address";
+import { Client } from "../../../entities/Client";
+import { IClientRepository } from "../../../repositories/IClientRepository";
 import { ICreateClientRequestDTO } from "./CreateClientDTO";
 
 export class CreateClientUseCase {

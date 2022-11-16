@@ -1,4 +1,4 @@
-import { ILoginRepository } from "../../repositories/ILoginRepository";
+import { ILoginRepository } from "../../../repositories/ILoginRepository";
 import { ILoginRequestDTO } from "./LoginDTO";
 
 export class LoginUseCase {

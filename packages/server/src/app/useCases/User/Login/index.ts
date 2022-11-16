@@ -1,4 +1,4 @@
-import { TypeOrmLoginRepository } from "../../repositories/implementations/TypeOrmLoginRepository"
+import { TypeOrmLoginRepository } from "../../../repositories/implementations/TypeOrmLoginRepository"
 import { LoginController } from "./LoginController"
 import { LoginUseCase } from "./LoginUseCase"
 

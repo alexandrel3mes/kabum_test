@@ -1,4 +1,4 @@
-import { TypeOrmClientRepository } from "../../repositories/implementations/TypeOrmClientRepository"
+import { TypeOrmClientRepository } from "../../../repositories/implementations/TypeOrmClientRepository"
 import { FindClientController } from "./FindClientController"
 import { FindClientUseCase } from "./FindClientUseCase"
 
