@@ -3,6 +3,8 @@ import CreateClientValidation from '../../validators/Client/CreateClientValidati
 import { createClientController } from '../../useCases/CreateClient'
 import authorize from '../../middlewares/authorize';
 import { findClientController } from '../../useCases/FindClient';
+import { editClientController } from '../../useCases/EditClient';
+import EditClientValidation from '../../validators/Client/EditClientValidation';
 
 const clientRouter = Router();
 
@@ -24,6 +26,13 @@ clientRouter.route('/:id')
 authorize.auth,
 (request, response) => {
   return findClientController.handle(request, response);
-});
+})
+.patch(
+  authorize.auth,
+  EditClientValidation,
+  (request, response) => {
+    return editClientController.handle(request, response);
+})
+
 
 export default clientRouter;

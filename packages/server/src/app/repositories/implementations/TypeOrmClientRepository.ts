@@ -7,8 +7,25 @@ import ClientModel from "../../models/Client.entity";
 import AddressModel from "../../models/Address.entity";
 import throwCustomError from "../../../utils/throwCustomError";
 import errorMessages from "../../error/errorMessages";
+import { IEditClientRequestDTO } from "../../useCases/EditClient/EditClientDTO";
 
 export class TypeOrmClientRepository implements IClientRepository {
+  async edit(userId: string, clientPayload: IEditClientRequestDTO): Promise<void> {
+    const source = await dataSource
+    const updatedClient: IEditClientRequestDTO = {}
+    if (clientPayload.birthday) updatedClient.birthday = clientPayload.birthday
+    if (clientPayload.name) updatedClient.name = clientPayload.name
+    if (clientPayload.cpf) updatedClient.cpf = clientPayload.cpf
+    if (clientPayload.rg) updatedClient.rg = clientPayload.rg
+    if (clientPayload.phone) updatedClient.phone = clientPayload.phone
+
+    await source.transaction(async (transaction: EntityManager) => {
+      await transaction.getRepository(ClientModel)
+      .update(userId, updatedClient)
+    })
+  }
+  
+
   async findById(id: string): Promise<Client> {
     const source = await dataSource
 
