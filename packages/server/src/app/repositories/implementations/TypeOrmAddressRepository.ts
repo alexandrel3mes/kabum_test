@@ -5,9 +5,14 @@ import AddressModel from "../../models/Address.entity";
 import throwCustomError from "../../error/throwCustomError";
 import errorMessages from "../../error/errorMessages";
 import { IAddressRepository } from "../IAddressRepository";
-import { IEditAddressRequestDTO } from "../../useCases/Address/EditClient/EditAddressDTO";
+import { IEditAddressRequestDTO } from "../../useCases/Address/EditAddress/EditAddressDTO";
 
 export class TypeOrmAddressRepository implements IAddressRepository {
+  async save(address: Address): Promise<void> {
+    const source = await dataSource
+    await source.getRepository(AddressModel).save(address)
+  }
+
   async remove(addressId: string): Promise<void> {
     const source = await dataSource
 

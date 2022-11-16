@@ -4,6 +4,8 @@ import { findAddressController } from '../../useCases/Address/FindAddress';
 import { editAddressController } from '../../useCases/Address/EditAddress';
 import { removeAddressController } from '../../useCases/Address/RemoveClient';
 import EditAddressValidation from '../../validators/Address/EditAddressValidation';
+import { createAddressController } from '../../useCases/Address/CreateAddress';
+import CreateAddressValidation from '../../validators/Address/CreateAddressValidation';
 
 const addressRouter = Router();
 
@@ -25,6 +27,12 @@ authorize.auth,
   EditAddressValidation,
   (request, response) => {
     return editAddressController.handle(request, response);
+})
+.post(
+  authorize.auth,
+  CreateAddressValidation,
+  (request, response) => {
+    return createAddressController.handle(request, response);
 })
 .delete(
   authorize.auth,

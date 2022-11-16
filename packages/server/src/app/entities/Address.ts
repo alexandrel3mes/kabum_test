@@ -12,7 +12,7 @@ export class Address {
   public district: string;
   public city: string;
   public state: string;
-  public client: Client;
+  public client?: Client;
 
   constructor(props: Omit<Address, 'id'>, client: Client, id?: string) {
     Object.assign(this, props)
