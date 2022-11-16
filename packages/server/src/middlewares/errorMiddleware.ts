@@ -17,7 +17,7 @@ const errorMiddleware = (
 ) => {
   const status = errors[name];
   if (!status) return res.sendStatus(500);
-  return res.status(status).json({ message });
+  return res.status(status).json({ error: message });
 };
 
 export default errorMiddleware;
