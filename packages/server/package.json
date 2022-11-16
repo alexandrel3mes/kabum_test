@@ -26,6 +26,7 @@
     "ts-node-dev": "^2.0.0",
     "typeorm": "^0.3.10",
     "typeorm-extension": "^2.2.12",
+    "uuid-validate": "^0.0.3",
     "uuidv4": "^6.2.13",
     "yup": "^0.32.11"
   },
