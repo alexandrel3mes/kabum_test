@@ -10,6 +10,12 @@ import errorMessages from "../../error/errorMessages";
 import { IEditClientRequestDTO } from "../../useCases/EditClient/EditClientDTO";
 
 export class TypeOrmClientRepository implements IClientRepository {
+  async remove(userId: string): Promise<void> {
+    const source = await dataSource
+
+    await source.getRepository(ClientModel).delete(userId)
+  }
+
   async edit(userId: string, clientPayload: IEditClientRequestDTO): Promise<void> {
     const source = await dataSource
     const updatedClient: IEditClientRequestDTO = {}

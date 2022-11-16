@@ -10,4 +10,5 @@ export interface IClientRepository {
   findAll(): Promise<Client[]>;
   save(client: Client, addresses: Address[]): Promise<void>;
   edit(userId: string, clientPayload: IEditClientRequestDTO): Promise<void>;
+  remove(userId: string): Promise<void>;
 } 

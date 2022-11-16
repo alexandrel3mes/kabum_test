@@ -5,6 +5,7 @@ import authorize from '../../middlewares/authorize';
 import { findClientController } from '../../useCases/FindClient';
 import { editClientController } from '../../useCases/EditClient';
 import EditClientValidation from '../../validators/Client/EditClientValidation';
+import { removeClientController } from '../../useCases/RemoveClient';
 
 const clientRouter = Router();
 
@@ -33,6 +34,11 @@ authorize.auth,
   (request, response) => {
     return editClientController.handle(request, response);
 })
+.delete(
+  authorize.auth,
+  (request, response) => {
+    return removeClientController.handle(request, response);
+  })
 
 
 export default clientRouter;
