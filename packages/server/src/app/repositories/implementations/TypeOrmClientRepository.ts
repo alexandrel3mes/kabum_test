@@ -13,7 +13,10 @@ export class TypeOrmClientRepository implements IClientRepository {
     const source = await dataSource
 
     const client = await source.getRepository(ClientModel).findOne({
-      where: { id }
+      where: { id },
+      relations: {
+        addresses: true
+      }
     })
 
     if (!client) return throwCustomError('notFoundError', errorMessages.NOT_FOUND_CLIENT);
@@ -53,7 +56,11 @@ export class TypeOrmClientRepository implements IClientRepository {
 
   async findAll(): Promise<Client[]> {
     const source = await dataSource
-    const clients = await source.getRepository(ClientModel).find()
+    const clients = await source.getRepository(ClientModel).find({
+      relations: {
+        addresses: true
+      }
+    })
 
     if (clients.length === 0) return throwCustomError('validationError', errorMessages.NO_CLIENTS);
     return clients
