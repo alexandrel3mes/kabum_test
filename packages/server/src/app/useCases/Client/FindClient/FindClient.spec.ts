@@ -1,8 +1,8 @@
 import * as sinon from 'sinon';
 import * as chai from 'chai';
-import ClientMock from './ClientMock';
+import ClientMock from './mocks/ClientMock';
 import { findClientUseCase } from './index'
-import ClientsMock from './ClientsMock';
+import ClientsMock from './mocks/ClientsMock';
 
 const { expect } = chai;
 
