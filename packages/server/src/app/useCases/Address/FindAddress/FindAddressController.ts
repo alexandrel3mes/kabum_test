@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { FindClientUseCase } from "./FindClientUseCase";
 
-export class FindClientController {
+export class FindAddressController {
   constructor(private findClientUseCase: FindClientUseCase) {}
   async handle(request: Request, response: Response): Promise<Response> {
     const { id } = request.params
