@@ -30,10 +30,9 @@ const authorize = {
 
     try {
       const data: string | jwt.JwtPayload = jwt.verify(token, authConfig.secret);
-      const { userId, userEmail } = data as TokenPayload;
+      const { userId } = data as TokenPayload;
   
       req.userId = userId;
-      req.userEmail = userEmail;
   
       return next();
     } catch (e) {

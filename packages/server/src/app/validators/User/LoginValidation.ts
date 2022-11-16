@@ -7,7 +7,6 @@ import Yup from '../../lib/Yup';
 export default async (req: Request, res: Response, next: NextFunction) => {
   try {
     const schema = Yup.object().shape({
-      name: Yup.string().min(3).max(250).whitespaceValid('Nome').required(),
       email: Yup.string().email().required(),
       password: Yup.string().min(8).required(),
     });
