@@ -1,9 +1,15 @@
 import 'dotenv';
 import { Request, Response, NextFunction } from 'express';
-import { verify } from 'jsonwebtoken';
-import throwCustomError from '../utils/throwCustomError';
+import authConfig from '../config/auth';
+import jwt from 'jsonwebtoken';
+import throwCustomError from '../../utils/throwCustomError';
 
 const secret = 'seusecretdetoken';
+
+export interface TokenPayload {
+  userId: string;
+  userEmail: string;
+}
 
 const authorize = {
   auth(
@@ -11,13 +17,24 @@ const authorize = {
     _: Response,
     next: NextFunction,
   ): void {
-    const token = req.headers.authorization;
-    if (!token) {
+    const authToken = req.headers.authorization;
+    if (!authToken) {
       return throwCustomError('unauthorizedError', 'Token not found');
     }
+
+    const [, token] = authToken.split(' ');
+
+    if (!token) {
+      return throwCustomError('unauthorizedError', 'Bad format token');
+    }
+
     try {
-      const decoded = verify(token, process.env.JWT_SECRET || secret);
-      req.body.user = decoded;
+      const data: string | jwt.JwtPayload = jwt.verify(token, authConfig.secret);
+      const { userId, userEmail } = data as TokenPayload;
+  
+      req.userId = userId;
+      req.userEmail = userEmail;
+  
       return next();
     } catch (e) {
       return throwCustomError('unauthorizedError', 'Token must be a valid token');
