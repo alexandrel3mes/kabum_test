@@ -4,7 +4,7 @@ import { CreateClientUseCase } from '../CreateClient/CreateClientUseCase'
 import { EditClientUseCase } from './EditClientUseCase'
 
 describe('Create Client', () => {
-  it('should be able to create a client', async () => {
+  it('should be able to edit a client', async () => {
     const mockClientRepo = new InMemoryClientRepository()
     const createUseCase = new CreateClientUseCase(mockClientRepo)
     const editUseCase = new EditClientUseCase(mockClientRepo)
