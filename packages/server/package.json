@@ -11,7 +11,7 @@
     "migration:revert": "yarn typeorm -d ./src/database/index.ts migration:revert",
     "drop": "yarn typeorm -d ./src/database/index.ts schema:drop",
     "db:reset": "npm run drop && npm run migration:run && npm run dump",
-    "test": "mocha -r ts-node/register ./src/app/useCases/**/*$NAME*.spec.ts --exit"
+    "test": "vitest"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -44,6 +44,7 @@
     "@types/sinon": "^10.0.13",
     "chai": "4.3",
     "mocha": "10.0",
-    "ts-node-dev": "^2.0.0"
+    "ts-node-dev": "^2.0.0",
+    "vitest": "^0.25.2"
   }
 }
