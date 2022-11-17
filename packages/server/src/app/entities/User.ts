@@ -1,4 +1,4 @@
-import { uuid } from 'uuidv4'
+import { v4 as uuidv4 } from 'uuid';
 import bcrypt from 'bcryptjs';
 
 export class User {
@@ -13,7 +13,7 @@ export class User {
     this.password = bcrypt.hashSync(props.password, 10);
 
     if (!id) {
-      this.id = uuid();
+      this.id = uuidv4();
     }
   }
 }

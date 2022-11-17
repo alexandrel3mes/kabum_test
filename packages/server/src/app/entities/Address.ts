@@ -1,4 +1,4 @@
-import { uuid } from 'uuidv4'
+import { v4 as uuidv4 } from 'uuid';
 import { Client } from './Client';
 
 export class Address {
@@ -19,7 +19,7 @@ export class Address {
     this.client = client
 
     if (!id) {
-      this.id = uuid();
+      this.id = uuidv4();
     }
   }
 }

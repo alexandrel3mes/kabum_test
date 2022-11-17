@@ -25,6 +25,8 @@ export class InMemoryAddressRepository implements IAddressRepository {
     throw new Error("Method not implemented.");
   }
   async remove(addressId: string): Promise<void> {
-    throw new Error("Method not implemented.");
+    const address = await this.findById(addressId)
+    const filter = this.items.filter((item) => item.id !== address.id)
+    this.items = filter
   }
 }
