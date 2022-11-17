@@ -2,6 +2,7 @@ import express from 'express'
 import 'express-async-errors';
 import errorMiddleware from './app/middlewares/errorMiddleware';
 import routes from './app/routes';
+import cors from 'cors'
 
 class App {
   public app: express.Express;
@@ -23,6 +24,7 @@ class App {
       next();
     };
     this.app.use(accessControl);
+    this.app.use(cors())
     this.app.use(express.json());
     this.app.use(routes)
   }
