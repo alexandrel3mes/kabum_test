@@ -6,15 +6,30 @@ import { IClientRepository } from "../IClientRepository"
 export class InMemoryClientRepository implements IClientRepository {
   public items: Client[] = []
 
-  findByCpf(cpf: string): Promise<void> {
-    throw new Error("Method not implemented.")
+  async findByCpf(cpf: string): Promise<void> {
+    const finder = this.items.find((item) => {
+      return item.cpf === cpf
+    })
+
+    if (finder) throw new Error('Dados já usados')
   }
-  findByRg(rg: string): Promise<void> {
-    throw new Error("Method not implemented.")
+
+  async findByRg(rg: string): Promise<void> {
+    const finder = this.items.find((item) => {
+      return item.rg === rg
+    })
+
+    if (finder) throw new Error('Dados já usados')
   }
-  findByPhone(phone: string): Promise<void> {
-    throw new Error("Method not implemented.")
+
+  async findByPhone(phone: string): Promise<void> {
+    const finder = this.items.find((item) => {
+      return item.phone === phone
+    })
+
+    if (finder) throw new Error('Dados já usados')
   }
+
   async findById(id: string): Promise<Client> {
     const finder = this.items.find((item) => {
       return item.id === id
@@ -23,16 +38,35 @@ export class InMemoryClientRepository implements IClientRepository {
     if (!finder) throw new Error('Cliente não encontrado')
     return finder
   }
-  findAll(): Promise<Client[]> {
-    throw new Error("Method not implemented.")
+
+  async findAll(): Promise<Client[]> {
+    return this.items
   }
-  save(client: Client, addresses: Address[]): Promise<void> {
-    throw new Error("Method not implemented.")
+
+  async save(client: Client, addresses: Address[]): Promise<void> {
+    client.addresses = addresses
+    this.items.push(client)
   }
-  edit(userId: string, clientPayload: IEditClientRequestDTO): Promise<void> {
-    throw new Error("Method not implemented.")
+
+  async edit(userId: string, clientPayload: IEditClientRequestDTO): Promise<void> {
+    const finder = this.items.find((item) => {
+      return item.id === userId
+    })
+
+    if (finder) {
+      const index = this.items.indexOf(finder)
+
+      if (clientPayload.name) this.items[index].name = clientPayload.name
+      if (clientPayload.cpf) this.items[index].cpf = clientPayload.cpf
+      if (clientPayload.birthday) this.items[index].birthday = clientPayload.birthday
+      if (clientPayload.rg) this.items[index].rg = clientPayload.rg
+      if (clientPayload.phone) this.items[index].phone = clientPayload.phone
+    }
   }
-  remove(userId: string): Promise<void> {
-    throw new Error("Method not implemented.")
+
+  async remove(userId: string): Promise<void> {
+    const user = await this.findById(userId)
+    const filter = this.items.filter((item) => item.id !== user.id)
+    this.items = filter
   }
 }
