@@ -1,6 +1,6 @@
 const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
-const MIN_PASSWORD_LENGTH = 6;
-const MIN_NAME_LENGTH = 12;
+const MIN_PASSWORD_LENGTH = 8;
+const MIN_NAME_LENGTH = 8;
 
 const validateFields = (name, email, password) => {
   if (name.length < MIN_NAME_LENGTH) return true;

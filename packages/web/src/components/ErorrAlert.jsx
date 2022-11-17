@@ -1,12 +1,12 @@
 import React from 'react';
 import Alert from 'react-bootstrap/Alert';
 
-function AlertDismissibleExample() {
+function AlertDismissibleExample({message}) {
     return (
       <Alert variant="danger" dismissible>
-        <Alert.Heading>Credenciais incorretas</Alert.Heading>
+        <Alert.Heading>Ocorreu um erro</Alert.Heading>
         <p>
-          Email ou senha inválidos
+          {message}
         </p>
       </Alert>
     );

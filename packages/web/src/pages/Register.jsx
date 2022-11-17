@@ -6,25 +6,25 @@ import visible from '../icons/visible.png'
 import invisible from '../icons/invisible.png'
 import api from '../services/api';
 import AlertDismissibleExample from '../components/ErorrAlert';
-import { validateLogin } from '../services/validations';
+import validateFields from '../services/validations';
+import Sucess from '../components/SucessRegister';
 
 
 
-const Login = () => {
+const Register = () => {
   const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [passwordShown, setPasswordShown] = useState(false);
   const [showError, setShowError] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
   const [errorMessage, setErrMessage] = useState('');
-  const redirect = useNavigate();
 
 
-  const login = async (email, password) => {
+  const register = async (email, password) => {
     try {
-      const login = await api.post('/login', {email, password})  
-      console.log(login.data)
-      localStorage.setItem('token', JSON.stringify(login.data));
-      redirect('/dashboard');
+      await api.post('/register', {name, email, password})
+      setShowSuccess(true)
     }
     catch(err) {
       setShowError(true)
@@ -39,10 +39,23 @@ const Login = () => {
   return (
     <>
       { showError && <AlertDismissibleExample message={errorMessage}/>}
+      { showSuccess && <Sucess/> }
       <section className='login_section'>
         <div className='login_box'>
-          <h3 className='login_header'>Login</h3>
+          <h3 className='login_header'>Cadastro</h3>
           <form className='login_form'>
+            <label>
+              Nome completo <br/>
+              <input
+                className='login_input'
+                name='name'
+                id='name'
+                type="name"
+                value={name}
+                placeholder="Digite seu nome"
+                onChange={ ({ target }) => setName(target.value) }
+              />
+            </label>
             <label>
               Email <br/>
               <input
@@ -64,7 +77,7 @@ const Login = () => {
                 id='password'
                 value={password}
                 onChange={ ({ target }) => setPassword(target.value) }
-                placeholder="Digite sua senha"
+                placeholder="Deve conter no mínimo 8 caracteres"
               />
               <img
                 className='toggle_password_button'
@@ -76,14 +89,14 @@ const Login = () => {
             <button
               type="button"
               className='login_button'
-              onClick={ () => login(email, password)}
-              disabled={ validateLogin(email, password) }
+              onClick={ () => register(email, password)}
+              disabled={ validateFields(name, email, password) }
             >
               Entrar
             </button>
           </form>
           <p className='register_quest'>
-            Ainda não possui cadastro? <Link to='/register'>Clique aqui!</Link>
+            Já possui cadastro? <Link to='/login'>Clique aqui!</Link>
           </p>
         </div>
       </section>
@@ -91,4 +104,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
