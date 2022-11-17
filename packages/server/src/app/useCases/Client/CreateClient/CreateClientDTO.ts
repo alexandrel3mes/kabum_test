@@ -7,7 +7,7 @@ interface IAddressRequestDTO {
   district: string;
   city: string;
   state: string;
-  client: ICreateClientRequestDTO;
+  client?: ICreateClientRequestDTO;
 }
 
 export interface ICreateClientRequestDTO {

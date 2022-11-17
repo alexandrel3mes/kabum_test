@@ -1,24 +1,11 @@
 import { InMemoryClientRepository } from '../../../repositories/in-memory/inMemory.client.repository'
 import { describe, expect, it } from 'vitest'
-import { InMemoryAddressRepository } from '../../../repositories/in-memory/inMemory.address.repository'
-import { CreateAddressUseCase } from './CreateAddressUseCase'
-import { Client } from '../../../entities/Client'
+import { CreateClientUseCase } from './CreateClientUseCase'
 
 describe('Create Client', () => {
-  it('should be able to create an address', async () => {
-    const mockRepo = new InMemoryAddressRepository()
+  it('should be able to create a client', async () => {
     const mockClientRepo = new InMemoryClientRepository()
-    const useCase = new CreateAddressUseCase(mockRepo, mockClientRepo)
-    const mockPayload = {
-      zipcode: '29060670',
-      address: 'Rua tal',
-      number: '110',
-      complement: 'La do lado',
-      district: 'Bairro X',
-      city: 'Sao Paulo',
-      state: 'SP',
-      reference: 'Perto de não sei aonde',
-    }
+    const useCase = new CreateClientUseCase(mockClientRepo)
 
     const mockClientPayload = {
       name: 'Alexandre',
@@ -26,17 +13,21 @@ describe('Create Client', () => {
       birthday: '16/06/1999',
       rg: '15889546',
       phone: '87992456785',
-      addresses: [mockPayload]
+      addresses: [{
+        zipcode: '29060670',
+        address: 'Rua tal',
+        number: '110',
+        complement: 'La do lado',
+        district: 'Bairro X',
+        city: 'Sao Paulo',
+        state: 'SP',
+        reference: 'Perto de não sei aonde',
+      }]
     }
 
-    const clientMock = new Client(mockClientPayload)
+    await useCase.execute(mockClientPayload)
 
-    mockClientRepo.items.push(clientMock)
-
-    if (clientMock.id)
-    await useCase.execute(clientMock.id, mockPayload)
-
-    const find = mockRepo.items.find((item) => item.zipcode === mockPayload.zipcode)
+    const find = mockClientRepo.items.find((item) => item.cpf === mockClientPayload.cpf)
 
     expect(find).toBeTruthy()
   })
