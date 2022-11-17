@@ -19,4 +19,22 @@ describe('Register User', () => {
 
     expect(find).toBeTruthy()
   })
+
+  it('should not be able to create an user with existing email', async () => {
+    const mockRepo = new InMemoryUserRepository()
+    const useCase = new CreateUserUseCase(mockRepo)
+    const mockCreate = {
+      name: 'Alexandre',
+      email: 'alexandre@email.com',
+      password: 'senhaMtoBoaMesmo'
+    }
+
+
+    await useCase.execute(mockCreate)
+
+    const find = mockRepo.items.find((item) => item.email === mockCreate.email)
+
+    expect(find).toBeTruthy()
+    expect(useCase.execute(mockCreate)).rejects.toBeInstanceOf(Error)
+  })
 })
