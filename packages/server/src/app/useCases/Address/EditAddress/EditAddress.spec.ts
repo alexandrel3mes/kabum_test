@@ -6,7 +6,7 @@ import { CreateAddressUseCase } from '../CreateAddress/CreateAddressUseCase'
 import { EditAddressUseCase } from './EditAddressUseCase'
 
 describe('Edit Address', () => {
-  it('should be able to remove an address', async () => {
+  it('should be able to edit an address', async () => {
     const mockRepo = new InMemoryAddressRepository()
     const mockClientRepo = new InMemoryClientRepository()
     const createUseCase = new CreateAddressUseCase(mockRepo, mockClientRepo)
