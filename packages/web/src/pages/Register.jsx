@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import '../style/Login.css'
 import visible from '../icons/visible.png'
