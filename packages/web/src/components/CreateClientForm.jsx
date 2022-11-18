@@ -1,6 +1,3 @@
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-
 function CreateClientForm() {
   return (
     <form className='login_form'>

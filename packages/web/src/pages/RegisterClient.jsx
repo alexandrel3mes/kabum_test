@@ -149,7 +149,7 @@ const RegisterClient = () => {
           <p>* campos obrigatórios</p>
           {
             addressToReg && arr.map((index) => (
-          <form className='login_form'>
+          <form key={index} className='login_form'>
             <label>
               Endereço * <br/>
               <input
