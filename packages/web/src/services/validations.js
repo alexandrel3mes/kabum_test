@@ -22,4 +22,12 @@ export const validateEdit = (cpf, rg, phone) => {
   if (phone) return !phoneRegex.test(phone)
 };
 
+export const validateCreate = (name, cpf, rg, phone) => {
+  if (!name && !cpf && !rg && !phone) return true
+  if (cpf) return !cpfIsValid(cpf)
+  if (name) return rg.length >= 3 ? false : true
+  if (rg) return rg.length >= 7 ? false : true
+  if (phone) return !phoneRegex.test(phone)
+};
+
 export default validateFields;

@@ -1,8 +1,7 @@
 .register_section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 200vh;
+  position: absolute;
+  margin-left: 20vw;
+  margin-top: 20vw;
 }
 
 .login_box {

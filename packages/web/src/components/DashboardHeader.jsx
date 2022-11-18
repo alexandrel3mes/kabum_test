@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo from '../icons/logo.png'
 import Nav from 'react-bootstrap/Nav';
+import { Link } from 'react-router-dom';
 import '../style/DashHeader.css'
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
@@ -21,19 +22,23 @@ function DashboardHeader() {
         <Nav.Item>
           <Nav.Link
             eventKey="1"
-            href="/dashboard"
             className='dashboard_button'
           >
+          <Link to="/dashboard">
+
             Dashboard
+          </Link>
+
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
           <Nav.Link
             eventKey="1"
-            href="/register/client"
             className='dashboard_button'
           >
+            <Link to="/register/client">
             Cadastrar cliente
+            </Link>
           </Nav.Link>
         </Nav.Item>
         <div>
