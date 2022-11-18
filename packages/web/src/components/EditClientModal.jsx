@@ -7,12 +7,14 @@ import Modal from 'react-bootstrap/Modal';
 import UserContext from '../context/User/Context';
 import api from '../services/api';
 import { validateEdit } from '../services/validations'
+import AlertDismissibleExample from './ErorrAlert';
 
 function EditClientModal({client}) {
-  const {showEditModal, setShowEditModal} = useContext(UserContext)
+  const {showEditModal, setShowEditModal, setShowErrorAlert} = useContext(UserContext)
   const [cpf, setCpf] = useState()
   const [rg, setRg] = useState()
   const [phone, setPhone] = useState()
+  const [errorMessage, setErrMessage] = useState('');
 
   const dataObj = (cpf, rg, phone) => {
     const obj = {}
@@ -26,10 +28,17 @@ function EditClientModal({client}) {
   const dataToFetch = dataObj(cpf, rg, phone)
 
   const update = async () => {
-    const token = localStorage.getItem('token')
-    await api.patch(`/client/${client.id}`, dataToFetch, { headers: {"Authorization" : `Bearer ${JSON.parse(token)}`}
-      });
-    window.location.reload(false);
+    try {
+      const token = localStorage.getItem('token')
+      await api.patch(`/client/${client.id}`, dataToFetch, { headers: {"Authorization" : `Bearer ${JSON.parse(token)}`}
+        });
+      window.location.reload(false);
+    }
+    catch(err) {
+      setErrMessage(err.response.data.error)
+      setShowErrorAlert(true)
+    }
+
   }
 
   const handleClose = () => setShowEditModal(false);
@@ -42,6 +51,7 @@ function EditClientModal({client}) {
 
   return (
     <>
+    { <AlertDismissibleExample message={errorMessage}/>}
       <Modal show={showEditModal} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Editar Cliente</Modal.Title>

@@ -17,10 +17,9 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordShown, setPasswordShown] = useState(false);
-  const [showError, setShowError] = useState(false);
   const [errorMessage, setErrMessage] = useState('');
   const redirect = useNavigate();
-  const { setToken } = useContext(UserContext)
+  const { setToken, setShowErrorAlert } = useContext(UserContext)
 
   const login = async (email, password) => {
     try {
@@ -30,8 +29,8 @@ const Login = () => {
       redirect('/dashboard');
     }
     catch(err) {
-      setShowError(true)
-      setErrMessage(err.message)
+      setErrMessage(err.response.data.error)
+      setShowErrorAlert(true)
     }
   }
 
@@ -42,7 +41,7 @@ const Login = () => {
   return (
     <>
       <Header />
-      { showError && <AlertDismissibleExample message={errorMessage}/>}
+      { <AlertDismissibleExample message={errorMessage}/>}
       <section className='login_section'>
         <div className='login_box'>
           <h3 className='login_header'>Login</h3>
