@@ -1,26 +1,13 @@
-import React, { useContext } from "react";
-import { useState } from "react";
-import UserContext from "../context/User/Context";
-import api from "../services/api";
-import ClientsModal from "./ClientsModal";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function ClientsTable({clients}) {
-  const [client, setClient] = useState()
-  const {setShowModal} = useContext(UserContext);
+  const redirect = useNavigate()
 
-  const findById = async (id) => {
-    const token = localStorage.getItem('token')
-    const client = await api.get(`/client/${id}`, { headers: {"Authorization" : `Bearer ${JSON.parse(token)}`}
-      });
-    console.log(client.data)
-    setClient(client.data)
-    localStorage.setItem('client', JSON.stringify(client.data))
-    setShowModal(true)
-  }
+
 
   return (
     <>
-    { client && <ClientsModal/>}
     <section className='table_section'>
       <table className='table'>
         <thead>
@@ -48,7 +35,7 @@ function ClientsTable({clients}) {
         <tbody>
         {clients.map((client) => (
           <tr
-            onClick={() => findById(client.id)}
+            onClick={() => redirect(`/client/${client.id}`)}
             className='t_row'
             key={ client.id }
           >
