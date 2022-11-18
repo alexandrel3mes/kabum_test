@@ -35,6 +35,7 @@ function EditClientModal({client}) {
       window.location.reload(false);
     }
     catch(err) {
+      setShowEditModal(false)
       setErrMessage(err.response.data.error)
       setShowErrorAlert(true)
     }
