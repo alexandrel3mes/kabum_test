@@ -5,8 +5,11 @@ import '../style/Login.css'
 import visible from '../icons/visible.png'
 import invisible from '../icons/invisible.png'
 import api from '../services/api';
+import Header from '../components/Header';
 import AlertDismissibleExample from '../components/ErorrAlert';
 import { validateLogin } from '../services/validations';
+import { useContext } from 'react';
+import UserContext from '../context/User/Context';
 
 
 
@@ -17,13 +20,13 @@ const Login = () => {
   const [showError, setShowError] = useState(false);
   const [errorMessage, setErrMessage] = useState('');
   const redirect = useNavigate();
-
+  const { setToken } = useContext(UserContext)
 
   const login = async (email, password) => {
     try {
       const login = await api.post('/login', {email, password})  
-      console.log(login.data)
-      localStorage.setItem('token', JSON.stringify(login.data));
+      localStorage.setItem('token', JSON.stringify(login.data.token));
+      setToken(login.data.token)
       redirect('/dashboard');
     }
     catch(err) {
@@ -38,6 +41,7 @@ const Login = () => {
 
   return (
     <>
+      <Header />
       { showError && <AlertDismissibleExample message={errorMessage}/>}
       <section className='login_section'>
         <div className='login_box'>

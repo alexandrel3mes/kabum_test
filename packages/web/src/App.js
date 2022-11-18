@@ -4,14 +4,14 @@ import './App.css';
 import Login from './pages/Login';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Register from './pages/Register';
-import Header from './components/Header';
+import Dashboard from './pages/Dashboard';
 
 function App() {
   return (
     <>
-      <Header />
       <Routes>
         <Route path="/login" element={ <Login /> } />
+        <Route path="/dashboard" element={ <Dashboard /> } />
         <Route path="/register" element={ <Register /> } />
         <Route path="/" element={ <Navigate to="/login" /> } />
       </Routes>

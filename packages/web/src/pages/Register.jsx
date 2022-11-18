@@ -7,7 +7,7 @@ import api from '../services/api';
 import AlertDismissibleExample from '../components/ErorrAlert';
 import validateFields from '../services/validations';
 import Sucess from '../components/SucessRegister';
-
+import Header from '../components/Header'
 
 
 const Register = () => {
@@ -37,6 +37,7 @@ const Register = () => {
 
   return (
     <>
+      <Header />
       { showError && <AlertDismissibleExample message={errorMessage}/>}
       { showSuccess && <Sucess/> }
       <section className='login_section'>
