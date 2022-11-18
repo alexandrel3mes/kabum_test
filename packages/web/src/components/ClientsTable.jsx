@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import ExcludeModal from "./ExcludeModal";
+import UserContext from "../context/User/Context";
 
 function ClientsTable({clients}) {
   const redirect = useNavigate()
-
-
+  const {setShowExcludeModal} = useContext(UserContext);
 
   return (
     <>
+    <ExcludeModal />
     <section className='table_section'>
       <table className='table'>
         <thead>
@@ -35,27 +38,51 @@ function ClientsTable({clients}) {
         <tbody>
         {clients.map((client) => (
           <tr
-            onClick={() => redirect(`/client/${client.id}`)}
             className='t_row'
             key={ client.id }
           >
-            <td>
+            <td
+            onClick={() => redirect(`/client/${client.id}`)}
+            >
               {client.id}
             </td>
-            <td>
+            <td
+            onClick={() => redirect(`/client/${client.id}`)}
+            >
               {client.name}
             </td>
-            <td>
+            <td
+            onClick={() => redirect(`/client/${client.id}`)}
+            >
               {client.cpf}
             </td>
-            <td>
+            <td
+            onClick={() => redirect(`/client/${client.id}`)}
+            >
               {client.rg}
             </td>
-            <td>
+            <td
+            onClick={() => redirect(`/client/${client.id}`)}
+            >
               {client.phone}
             </td>
-            <td>
+            <td
+            onClick={() => redirect(`/client/${client.id}`)}
+            >
               {client.birthday}
+            </td>
+            <td>
+            <NavDropdown
+              id="nav-dropdown"
+            >
+              <NavDropdown.Item
+                eventKey="4.1"
+                onClick={() => setShowExcludeModal(true)}
+              >
+                Exlcuir
+              </NavDropdown.Item>
+            </NavDropdown>
+
             </td>
           </tr>
         ))}
