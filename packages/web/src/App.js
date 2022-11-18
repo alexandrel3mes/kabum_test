@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import ClientDetails from './pages/ClientDetails';
+import RegisterClient from './pages/RegisterClient';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/dashboard" element={ <Dashboard /> } />
         <Route path="/client/:id" element={ <ClientDetails /> } />
         <Route path="/register" element={ <Register /> } />
+        <Route path="/register/client" element={ <RegisterClient /> } />
         <Route path="/" element={ <Navigate to="/login" /> } />
       </Routes>
     </>

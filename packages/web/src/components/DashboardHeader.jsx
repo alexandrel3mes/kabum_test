@@ -19,14 +19,23 @@ function DashboardHeader() {
           <img alt='Kabum logo' className='logo' src={logo} />
         </div>
         <Nav.Item>
-        <Nav.Link
-          eventKey="1"
-          href="/dashboard"
-          className='dashboard_button'
-        >
-          Dashboard
-        </Nav.Link>
-      </Nav.Item>
+          <Nav.Link
+            eventKey="1"
+            href="/dashboard"
+            className='dashboard_button'
+          >
+            Dashboard
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link
+            eventKey="1"
+            href="/register/client"
+            className='dashboard_button'
+          >
+            Cadastrar cliente
+          </Nav.Link>
+        </Nav.Item>
         <div>
         <NavDropdown title="Perfil" id="nav-dropdown">
           <NavDropdown.Item
