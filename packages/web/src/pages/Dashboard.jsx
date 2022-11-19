@@ -23,7 +23,7 @@ const Dashboard = () => {
   return (
     <>
       <DashboardHeader />
-      { <ClientsTable clients={clients} /> }
+      { clients.length > 0 ? <ClientsTable clients={clients} /> : <h3 className='no_clients'>Nenhum cliente cadastrado!</h3> }
     </>
   )
 };

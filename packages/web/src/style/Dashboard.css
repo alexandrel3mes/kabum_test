@@ -21,3 +21,10 @@
 .dots {
   width: 20px;
 }
+
+.no_clients {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
