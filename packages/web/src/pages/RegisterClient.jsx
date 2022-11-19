@@ -10,7 +10,6 @@ import SucessClient from '../components/SucessClientRegister';
 
 const RegisterClient = () => {
   const [cpf, setCpf] = useState('');
-  const [addressToReg, setAddressToReg] = useState(1);
   const [addresses, setAddresses] = useState([])
   const [rg, setRg] = useState('');
   const [phone, setPhone] = useState('');
@@ -68,7 +67,31 @@ const RegisterClient = () => {
     return day+'/'+month+'/'+year;
   }
 
+  const factoryAddress = () => {
+    const addObj = {
+      address,
+      number,
+      zipcode,
+      district,
+      city,
+      state
+    }
+
+    if (complement) addObj.complement = complement
+    if (reference) addObj.reference = reference
+    setAddresses(addresses => addresses.concat(addObj))
+    setAddress('')
+    setNumber('')
+    setZipcode('')
+    setComplement('')
+    setReference('')
+    setDistrict('')
+    setCity('')
+    setState('AC')
+  }
+
   const factory = () => {
+    console.log(addresses)
     const addObj = {
       address,
       number,
@@ -82,7 +105,6 @@ const RegisterClient = () => {
     if (reference) addObj.reference = reference
 
     setAddresses(addresses.push(addObj))
-
     const parsedDate = formatDate(birthday)
 
     return {
@@ -108,10 +130,6 @@ const RegisterClient = () => {
       setShowError(true)
       setErrMessage(err.message)
     }
-  }
-
-  const createAddressForm = () => {
-    setAddressToReg(addressToReg + 1)
   }
 
   const handleChange = value => {
@@ -165,7 +183,7 @@ const RegisterClient = () => {
                 id='rg'
                 type="text"
                 value={rg}
-                placeholder="Digite o RRG (apenas números)"
+                placeholder="Digite o RG (apenas números)"
                 onChange={ ({ target }) => setRg(handleChange(target.value)) }
               />
             </label>
@@ -201,6 +219,8 @@ const RegisterClient = () => {
               CEP *<br/>
               <input
                 className='login_input'
+                required
+                minLength={7}
                 name='zipcode'
                 id='zipcode'
                 type="text"
@@ -215,6 +235,7 @@ const RegisterClient = () => {
                 className='login_input'
                 name='address'
                 id='address'
+                required
                 type="text"
                 value={address}
                 placeholder="Digite seu endereço"
@@ -228,6 +249,7 @@ const RegisterClient = () => {
                 name='number'
                 id='number'
                 type="text"
+                required
                 value={number}
                 placeholder="Número"
                 onChange={ ({ target }) => setNumber(target.value) }
@@ -262,6 +284,7 @@ const RegisterClient = () => {
               <input
                 className='login_input'
                 name='district'
+                required
                 id='district'
                 type="text"
                 value={district}
@@ -275,6 +298,7 @@ const RegisterClient = () => {
                 className='login_input'
                 name='city'
                 id='city'
+                required
                 type="text"
                 value={city}
                 placeholder="Algum ponto de referência"
@@ -287,6 +311,7 @@ const RegisterClient = () => {
                 className='login_input'
                 name='state'
                 id='state'
+                required
                 value={state}
                 onChange={ ({ target }) => setState(target.value) }
               >
@@ -299,7 +324,7 @@ const RegisterClient = () => {
           <button
             type="button"
             className='login_button'
-            onClick={ () => createAddressForm() }
+            onClick={ () => factoryAddress() }
           >
             Adicionar outro endereço
           </button>
