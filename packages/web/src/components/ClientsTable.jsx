@@ -13,6 +13,14 @@ function ClientsTable({clients}) {
     setClientToExclude(id)
   }
 
+  const setDetail = (client) => {
+    console.log(client)
+    localStorage.removeItem('client')
+    localStorage.setItem('client', JSON.stringify(client))
+    redirect(`/client/${client.id}`)
+  }
+
+
   return (
     <>
     <ExcludeModal />
@@ -47,32 +55,32 @@ function ClientsTable({clients}) {
             key={ client.id }
           >
             <td
-            onClick={() => redirect(`/client/${client.id}`)}
+            onClick={() => setDetail(client)}
             >
               {client.id}
             </td>
             <td
-            onClick={() => redirect(`/client/${client.id}`)}
+            onClick={() => setDetail(client)}
             >
               {client.name}
             </td>
             <td
-            onClick={() => redirect(`/client/${client.id}`)}
+            onClick={() => setDetail(client)}
             >
               {client.cpf}
             </td>
             <td
-            onClick={() => redirect(`/client/${client.id}`)}
+            onClick={() => setDetail(client)}
             >
               {client.rg}
             </td>
             <td
-            onClick={() => redirect(`/client/${client.id}`)}
+            onClick={() => setDetail(client)}
             >
               {client.phone}
             </td>
             <td
-            onClick={() => redirect(`/client/${client.id}`)}
+            onClick={() => setDetail(client)}
             >
               {client.birthday}
             </td>

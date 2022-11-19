@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import '../style/Login.css'
 import api from '../services/api';
 import AlertDismissibleExample from '../components/ErorrAlert';
-import Sucess from '../components/SucessRegister';
 import DashboardHeader from '../components/DashboardHeader';
 import '../style/RegisterClient.css'
 import { validateCreate } from '../services/validations';
+import SucessClient from '../components/SucessClientRegister';
 
 
 const RegisterClient = () => {
@@ -128,7 +128,7 @@ const RegisterClient = () => {
     <>
       <DashboardHeader />
       { showError && <AlertDismissibleExample message={errorMessage}/>}
-      { showSuccess && <Sucess/> }
+      { showSuccess && <SucessClient/> }
       <section className='register_section'>
         <div className='login_box'>
           <h3 className='login_header'>Cadastrar cliente</h3>
