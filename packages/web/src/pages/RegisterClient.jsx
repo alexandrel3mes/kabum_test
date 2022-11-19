@@ -22,6 +22,7 @@ const RegisterClient = () => {
   
   const [address, setAddress] = useState('');
   const [number, setNumber] = useState('');
+  const [zipcode, setZipcode] = useState('');
   const [complement, setComplement] = useState('');
   const [reference, setReference] = useState('');
   const [district, setDistrict] = useState('');
@@ -58,11 +59,50 @@ const RegisterClient = () => {
     'TO',
   ]
 
+  function formatDate (input) {
+    const datePart = input.split("-")
+    const year = datePart[0].substring(0)
+    const month = datePart[1]
+    const day = datePart[2];
+  
+    return day+'/'+month+'/'+year;
+  }
 
-  const register = async (email, password) => {
+  const factory = () => {
+    const addObj = {
+      address,
+      number,
+      zipcode,
+      district,
+      city,
+      state
+    }
+
+    if (complement) addObj.complement = complement
+    if (reference) addObj.reference = reference
+
+    setAddresses(addresses.push(addObj))
+
+    const parsedDate = formatDate(birthday)
+
+    return {
+      name,
+      cpf,
+      rg,
+      phone,
+      birthday: parsedDate,
+      addresses
+    }
+  }
+
+  const register = async () => {
+    const data = factory()
     try {
-      await api.post('/register', {name, email, password})
+      const token = localStorage.getItem('token')
+      await api.post(`/client`, data, { headers: {"Authorization" : `Bearer ${JSON.parse(token)}`}
+    })
       setShowSuccess(true)
+      window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
     }
     catch(err) {
       setShowError(true)
@@ -79,8 +119,6 @@ const RegisterClient = () => {
 
     return result
   };
-
-  const arr = Array.from(Array(addressToReg).keys())
 
   const bothValidate = () => {
     return validateCreate(name, cpf, rg, phone)
@@ -158,9 +196,19 @@ const RegisterClient = () => {
           </form>
           <h4>Endereços</h4>
           <p>* campos obrigatórios</p>
-          {
-            addressToReg && arr.map((index) => (
-          <form key={index} className='login_form'>
+          <form className='login_form'>
+            <label>
+              CEP *<br/>
+              <input
+                className='login_input'
+                name='zipcode'
+                id='zipcode'
+                type="text"
+                value={zipcode}
+                placeholder="Digite o CEP (apenas números)"
+                onChange={ ({ target }) => setZipcode(handleChange(target.value)) }
+              />
+            </label>
             <label>
               Endereço * <br/>
               <input
@@ -174,7 +222,7 @@ const RegisterClient = () => {
               />
             </label>
             <label>
-              Número <br/>
+              Número *<br/>
               <input
                 className='login_input'
                 name='number'
@@ -182,31 +230,55 @@ const RegisterClient = () => {
                 type="text"
                 value={number}
                 placeholder="Número"
-                onChange={ ({ target }) => setCpf(target.value) }
+                onChange={ ({ target }) => setNumber(target.value) }
               />
             </label>
             <label>
-              RG <br/>
+              Complemento <br/>
               <input
                 className='login_input'
-                name='rg'
-                id='rg'
+                name='complement'
+                id='complement'
                 type="text"
-                value={rg}
-                placeholder="Digite seu RG"
-                onChange={ ({ target }) => setRg(target.value) }
+                value={complement}
+                placeholder="Complemento do endereço"
+                onChange={ ({ target }) => setComplement(target.value) }
               />
             </label>
             <label>
-              Telefone <br/>
+              Ponto de referência <br/>
               <input
                 className='login_input'
-                name='phone'
-                id='phone'
+                name='reference'
+                id='reference'
                 type="text"
-                value={phone}
-                placeholder="Digite seu telefone"
-                onChange={ ({ target }) => setPhone(target.value) }
+                value={reference}
+                placeholder="Algum ponto de referência"
+                onChange={ ({ target }) => setReference(target.value) }
+              />
+            </label>
+            <label>
+              Bairro * <br/>
+              <input
+                className='login_input'
+                name='district'
+                id='district'
+                type="text"
+                value={district}
+                placeholder="Algum ponto de referência"
+                onChange={ ({ target }) => setDistrict(target.value) }
+              />
+            </label>
+            <label>
+              Cidade *<br/>
+              <input
+                className='login_input'
+                name='city'
+                id='city'
+                type="text"
+                value={city}
+                placeholder="Algum ponto de referência"
+                onChange={ ({ target }) => setCity(target.value) }
               />
             </label>
             <label>
@@ -224,8 +296,6 @@ const RegisterClient = () => {
               </select>
             </label>
           </form>
-            ))
-          }
           <button
             type="button"
             className='login_button'
@@ -237,6 +307,7 @@ const RegisterClient = () => {
               type="button"
               className='login_button'
               disabled={bothValidate()}
+              onClick={() => register()}
             >
               Finalizar cadastro
             </button>

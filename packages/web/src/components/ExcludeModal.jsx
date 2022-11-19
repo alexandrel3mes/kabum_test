@@ -6,14 +6,14 @@ import UserContext from "../context/User/Context";
 import api from "../services/api";
 
 function ExcludeModal() {
-  const {showExcludeModal, setShowExcludeModal} = useContext(UserContext);
-  const client = JSON.parse(localStorage.getItem('client'))
+  const {clientToExclude, showExcludeModal, setShowExcludeModal} = useContext(UserContext);
   const handleClose = () => setShowExcludeModal(false);
 
   const deleteUser = async (id) => {
     const token = localStorage.getItem('token')
     await api.delete(`/client/${id}`, { headers: {"Authorization" : `Bearer ${JSON.parse(token)}`}
       });
+    localStorage.removeItem('client')
     window.location.reload(false);
   }
 
@@ -29,7 +29,7 @@ function ExcludeModal() {
           <Button
             variant="danger"
             size="lg"
-            onClick={ () => deleteUser(client.id) }
+            onClick={ () => deleteUser(clientToExclude) }
           >
           Sim
           </Button>

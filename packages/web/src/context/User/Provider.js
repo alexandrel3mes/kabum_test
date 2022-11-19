@@ -10,6 +10,7 @@ function UserProvider({ children }) {
   const [showExcludeModal, setShowExcludeModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showErrorAlert, setShowErrorAlert] = useState(false)
+  const [clientToExclude, setClientToExclude] = useState('')
 
   const contextValue = useMemo(() => ({
     token,
@@ -26,7 +27,9 @@ function UserProvider({ children }) {
     setShowEditModal,
     showErrorAlert,
     setShowErrorAlert,
-  }), [token, client, clients, showModal, showExcludeModal, showEditModal, showErrorAlert]);
+    clientToExclude,
+    setClientToExclude
+  }), [token, client, clients, showModal, showExcludeModal, showEditModal, showErrorAlert, clientToExclude]);
 
   return (
     <UserContext.Provider value={ contextValue }>

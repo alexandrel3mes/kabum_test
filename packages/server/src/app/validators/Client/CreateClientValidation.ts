@@ -12,7 +12,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
     const schema = Yup.object().shape({
       name: Yup.string().min(3).max(250).whitespaceValid('Nome').required(),
       cpf: Yup.string().cpf().required(),
-      rg: Yup.string().rg().required(),
+      rg: Yup.string().required(),
       phone: Yup.string().phone().required(),
       birthday: Yup.date().transform(dateFunctions.parseDateString).max(today),
       addresses: Yup.array().of(

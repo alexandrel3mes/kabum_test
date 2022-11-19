@@ -6,7 +6,12 @@ import UserContext from "../context/User/Context";
 
 function ClientsTable({clients}) {
   const redirect = useNavigate()
-  const {setShowExcludeModal} = useContext(UserContext);
+  const {setShowExcludeModal, setClientToExclude} = useContext(UserContext);
+
+  const setExclude = (id) => {
+    setShowExcludeModal(true)
+    setClientToExclude(id)
+  }
 
   return (
     <>
@@ -77,7 +82,7 @@ function ClientsTable({clients}) {
             >
               <NavDropdown.Item
                 eventKey="4.1"
-                onClick={() => setShowExcludeModal(true)}
+                onClick={() => setExclude(client.id)}
               >
                 Exlcuir
               </NavDropdown.Item>
