@@ -1,0 +1,30 @@
+.table_section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.t_row {
+  transition: 200ms;
+}
+
+.t_row:hover {
+  box-shadow: 5px 5px 15px 5px rgba(141, 141, 141, 0.35);
+  cursor: pointer;
+}
+
+.table {
+  width: 80vw;
+}
+
+.dots {
+  width: 20px;
+}
+
+.no_clients {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}

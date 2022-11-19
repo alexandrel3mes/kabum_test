@@ -1,0 +1,33 @@
+.dash_header {
+  background: rgb(223, 223, 223);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px;
+  margin-bottom: -150px;
+}
+
+.logo {
+  width: 150px;
+}
+
+.dashboard_button {
+  background-color: #0468aa;
+  color: white;
+  padding: 14px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 5px;
+  transition: 200ms;
+}
+
+.dashboard_button:hover {
+  background-color: #004b7c;
+}
+
+
+header a {
+  color: inherit; 
+  text-decoration: inherit; 
+}
