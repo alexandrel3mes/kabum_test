@@ -92,7 +92,7 @@ const Register = () => {
               onClick={ () => register(email, password)}
               disabled={ validateFields(name, email, password) }
             >
-              Entrar
+              Cadastrar
             </button>
           </form>
           <p className='register_quest'>
