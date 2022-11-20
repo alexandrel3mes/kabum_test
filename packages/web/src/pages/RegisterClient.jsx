@@ -91,7 +91,6 @@ const RegisterClient = () => {
   }
 
   const factory = () => {
-    console.log(addresses)
     const addObj = {
       address,
       number,
