@@ -2,8 +2,6 @@ import { App } from './app';
 import 'dotenv/config';
 import dataSource from './database';
 
-const PORT = process.env.APP_PORT || 3001;
-
 const app = new App();
 
 (async () => {
@@ -11,7 +9,7 @@ const app = new App();
   source
   .initialize()
   .then(() => {
-    app.start(PORT);
+    app.start(3001);
   })
   .catch((err) => {
     console.log(err)
