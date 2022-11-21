@@ -1,7 +1,7 @@
 .register_section {
   position: absolute;
   margin-left: 20vw;
-  margin-top: 50vw;
+  margin-top: 20vw;
 }
 
 .login_box {
@@ -72,6 +72,12 @@ label {
 @media (max-width: 600px) {
   .login_box {
     width: 80vw;
+  }
+
+  .register_section {
+    position: absolute;
+    margin-left: 20vw;
+    margin-top: 50vw;
   }
 }
 
